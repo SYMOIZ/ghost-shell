@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ghost Shell</title>
+<meta name="description" content="A haunted terminal. Local Gemma, via Ollama. Your history never leaves the machine.">
+<style>
+:root { color-scheme: dark; --ink:#f3e6d0; --dim:#b7a89a; --bg:#100810; --purple:#c4b0d4; --gold:#e8a317; }
+* { box-sizing: border-box; }
+body { margin: 0; color: var(--ink); background:
+  radial-gradient(circle at 20% -10%, #3a2448, transparent 42%),
+  radial-gradient(circle at 90% 0%, #4a2a12, transparent 36%), var(--bg);
+  font-family: Palatino, Georgia, serif; }
+a { color: var(--gold); }
+header, main { max-width: 820px; margin: 0 auto; padding: 0 20px; }
+header { padding-top: 64px; }
+.eyebrow { letter-spacing: .22em; text-transform: uppercase; font-size: .78rem; color: var(--purple); }
+h1 { font-size: clamp(3rem, 8vw, 5.2rem); font-weight: normal; margin: 8px 0; }
+h1 span { color: var(--gold); }
+.lede { font-size: 1.25rem; max-width: 38rem; color: var(--dim); }
+.term, .frame, .install, .steps { background: #1a121c; border: 1px solid #3a2a40; border-radius: 12px; }
+.term { margin: 28px 0; padding: 18px 18px 22px; font-family: ui-monospace, Consolas, monospace; font-size: .95rem; min-height: 220px; }
+.dots { color: #6d5a78; margin-bottom: 12px; }
+.dots i { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; background: #6e2430; }
+.dots i:nth-child(2) { background: #e8a317; }
+.dots i:nth-child(3) { background: #6a8f4e; }
+.row { opacity: 0; margin: 0 0 8px; animation: show 0.45s ease forwards; }
+.r1 { animation-delay: 0.15s; } .r2 { animation-delay: 0.55s; } .r3 { animation-delay: 1s; }
+.r4 { animation-delay: 1.4s; } .r5 { animation-delay: 1.85s; } .r6 { animation-delay: 2.25s; }
+.prompt { color: #8fd18a; } .ghost { color: #a898b8; } .tomb { color: #e8a317; }
+.cursor { display: inline-block; width: 8px; height: 1em; background: var(--ink); animation: blink 1s steps(1) infinite; vertical-align: text-bottom; }
+@keyframes show { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+@keyframes blink { 50% { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .row, .flame { animation: none; opacity: 1; } }
+h2 { font-weight: normal; letter-spacing: .04em; }
+.steps { padding: 8px 22px 18px; }
+code, pre { font-family: ui-monospace, Consolas, monospace; }
+pre { background: #100810; color: var(--gold); padding: 14px; border-radius: 8px; overflow-x: auto; }
+.frame { margin: 12px 0 48px; padding: 16px; }
+.frame p { margin-top: 0; color: var(--dim); }
+.altar { display: flex; gap: 22px; justify-content: center; text-align: center; }
+.candle { width: 140px; }
+.flame { width: 14px; height: 24px; margin: 0 auto; border-radius: 50%;
+  background: radial-gradient(circle at 50% 30%, #fff6d0, #ffb703 40%, #e85d04 72%);
+  filter: drop-shadow(0 0 8px #ffb703); animation: glow 1.3s ease-in-out infinite; }
+.wax { width: 22px; height: 48px; margin: -2px auto 8px; border-radius: 3px; background: linear-gradient(#f3d5a0, #c4843a); }
+.picado { height: 18px; margin-bottom: 10px; background: radial-gradient(circle at 12px 0, transparent 10px, #e8872a 11px) 0 0 / 24px 18px repeat-x; }
+@keyframes glow { 50% { transform: scale(1.1) translateY(-2px); opacity: .75; } }
+footer { padding: 12px 20px 48px; text-align: center; color: var(--dim); }
+</style>
+</head>
+<body>
+<header>
+  <p class="eyebrow">Hacktoberfest · Ghost in the Machine</p>
+  <h1>Ghost <span>Shell</span></h1>
+  <p class="lede">A haunted terminal. Gemma whispers from localhost after your commands, and keeps an ofrenda for everything you delete.</p>
+</header>
+<main>
+  <div class="term" aria-hidden="true">
+    <div class="dots"><i></i><i></i><i></i></div>
+    <p class="row r1"><span class="prompt">$</span> git branch -D experiment</p>
+    <p class="row r2 tomb">🪦 experiment<br>A branch cut down before it flowered.</p>
+    <p class="row r3"><span class="prompt">$</span> make test</p>
+    <p class="row r4 ghost">👻 The build failed. Something in the walls is pleased.</p>
+    <p class="row r5"><span class="prompt">$</span> ghost seance "what did I delete?"</p>
+    <p class="row r6 ghost">👻 You buried experiment. The house still knows its name. <span class="cursor"></span></p>
+  </div>
+  <h2 id="install">Install</h2>
+  <div class="steps">
+    <pre>git clone https://github.com//ghost-shell.git
+cd ghost-shell
+./install.sh</pre>
+    <p>Then open a new shell. The rc file gains one line: <code>source ~/.ghost-shell/ghost.sh</code></p>
+  </div>
+  <h2>Ofrenda</h2>
+  <div class="frame">
+    <div class="picado"></div>
+    <p>Screenshot placeholder. <code>ghost ofrenda</code> writes the real altar to <code>~/.ghost/ofrenda.html</code>.</p>
+    <div class="altar">
+      <div class="candle"><div class="flame"></div><div class="wax"></div><strong>abandoned.md</strong><br>31 Oct</div>
+      <div class="candle"><div class="flame"></div><div class="wax"></div><strong>experiment</strong><br>31 Oct</div>
+    </div>
+  </div>
+</main>
+<footer>
+  <a href="https://github.com//ghost-shell">GitHub</a>
+  · runs offline · history never leaves the machine
+</footer>
+</body>
+</html>
