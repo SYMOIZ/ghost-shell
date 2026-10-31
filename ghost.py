@@ -246,10 +246,14 @@ def render_ofrenda(rows):
     return template.replace("<!--CANDLES-->", candles)
 
 
-def cmd_ofrenda():
+def cmd_ofrenda(args=None):
     path = _folder() / "ofrenda.html"
     path.write_text(render_ofrenda(load_graveyard()), encoding="utf-8")
     emit(str(path))
+    # Screenshots and tests pass --no-open or GHOST_NO_OPEN=1.
+    skipped = "--no-open" in (args or []) or os.environ.get("GHOST_NO_OPEN") == "1"
+    if skipped:
+        return
     try:
         webbrowser.open(path.resolve().as_uri())
     except Exception:
@@ -287,7 +291,7 @@ def dispatch(cmd, args):
     elif cmd == "graveyard":
         cmd_graveyard()
     elif cmd == "ofrenda":
-        cmd_ofrenda()
+        cmd_ofrenda(args)
     elif cmd == "bench":
         cmd_bench()
     else:

@@ -4,23 +4,27 @@
 <title>Ofrenda</title>
 <style>
 :root { color-scheme: dark; }
-body { margin: 0; min-height: 100vh; color: #f6e7c1;
+html, body { height: 100%; }
+body { margin: 0; min-height: 100vh; display: flex; flex-direction: column; color: #f6e7c1;
   background: radial-gradient(circle at 50% 0%, #3a2410, #14080c 55%);
   font-family: Palatino, Georgia, serif; }
 .picado { height: 28px; background:
   radial-gradient(circle at 14px 0, transparent 12px, #e8872a 13px) 0 0 / 28px 28px repeat-x; }
 .picado.bottom { transform: scaleY(-1); }
-main { max-width: 880px; margin: 0 auto; padding: 32px 20px 64px; text-align: center; }
-h1 { font-weight: normal; letter-spacing: .14em; text-transform: uppercase; color: #ffb703; }
-.altar { display: flex; flex-wrap: wrap; gap: 28px; justify-content: center; margin-top: 28px; }
-.candle { width: 180px; }
-.flame { width: 16px; height: 28px; margin: 0 auto; border-radius: 50% 50% 45% 45%;
+main { flex: 1; max-width: 1180px; margin: 0 auto; padding: 16px 20px 20px; text-align: center;
+  display: flex; flex-direction: column; justify-content: center; }
+h1 { margin: 6px 0 0; font-size: 2rem; font-weight: normal; letter-spacing: .14em; text-transform: uppercase; color: #ffb703; }
+main > p { margin: 6px 0 0; }
+.altar { display: flex; flex-wrap: wrap; gap: 12px 16px; justify-content: center; margin-top: 16px; }
+.candle { width: 270px; }
+.flame { width: 14px; height: 22px; margin: 0 auto; border-radius: 50% 50% 45% 45%;
   background: radial-gradient(circle at 50% 30%, #fff6d0, #ffb703 45%, #e85d04 75%);
-  filter: drop-shadow(0 0 10px #ffb703); animation: glow 1.3s ease-in-out infinite; }
-.wax { width: 28px; height: 64px; margin: -4px auto 12px; border-radius: 4px 4px 8px 8px;
+  filter: drop-shadow(0 0 8px #ffb703); animation: glow 1.3s ease-in-out infinite; }
+.wax { width: 22px; height: 40px; margin: -2px auto 8px; border-radius: 4px 4px 8px 8px;
   background: linear-gradient(#f3d5a0, #c4843a); }
-h2 { font-size: 1.05rem; margin: 0; word-break: break-word; }
-time, .empty { display: block; color: #e8a87c; font-size: .9rem; }
+h2 { font-size: 1rem; margin: 0; word-break: break-word; }
+time, .empty { display: block; color: #e8a87c; font-size: .82rem; }
+.candle p { margin: 6px 0 0; font-size: .88rem; line-height: 1.25; }
 @keyframes glow { 50% { transform: scale(1.12) translateY(-2px); opacity: .8; } }
 </style></head><body>
 <div class="picado"></div>

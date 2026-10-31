@@ -112,6 +112,7 @@ class GhostTests(unittest.TestCase):
             }) + "\n",
             encoding="utf-8",
         )
+        os.environ.pop("GHOST_NO_OPEN", None)
         with patch("ghost.webbrowser.open") as opener:
             buf = StringIO()
             with redirect_stdout(buf):
@@ -125,6 +126,13 @@ class GhostTests(unittest.TestCase):
         self.assertIn("Here lies the draft.", html)
         self.assertIn("flame", html)
         self.assertIn("@keyframes glow", html)
+
+    def test_ofrenda_stays_closed(self):
+        with patch("ghost.webbrowser.open") as opener:
+            ghost.main(["ofrenda", "--no-open"])
+            with patch.dict(os.environ, {"GHOST_NO_OPEN": "1"}):
+                ghost.main(["ofrenda"])
+        opener.assert_not_called()
 
 
 if __name__ == "__main__":

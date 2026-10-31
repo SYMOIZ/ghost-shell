@@ -6,6 +6,8 @@ The model runs on your machine. Command history and the names of deleted files n
 
 ![Ghost Shell demo](docs/demo.gif)
 
+![Ofrenda altar](docs/ofrenda.png)
+
 > Demo GIF placeholder. Record a terminal session and save it as `docs/demo.gif`.
 
 ## Install
@@ -44,10 +46,13 @@ ghost seance "what did I do last night?"
 
 ghost graveyard          # list every buried name and its epitaph
 ghost ofrenda            # write ~/.ghost/ofrenda.html and open it
+ghost ofrenda --no-open  # write the altar and leave the browser closed
 ghost off                # silence the hook
 ghost on                 # wake it again
 GHOST_BENCH_MODELS="gemma3:1b,gemma3:4b" ghost bench
 ```
+
+`GHOST_NO_OPEN=1` does the same as `--no-open`.
 
 Whispers show up on about one command in three, and on every non-zero exit. `cd`, `ls`, `clear`, and `ghost` stay quiet. Deletions (`rm`, `rmdir`, `git branch -D`) always get an epitaph, written in the background so the prompt does not wait.
 
