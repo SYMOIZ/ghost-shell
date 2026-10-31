@@ -13,7 +13,7 @@ The model runs on your machine. Command history and the names of deleted files n
 Three commands:
 
 ```bash
-git clone https://github.com//ghost-shell.git
+git clone https://github.com/SYMOIZ/ghost-shell.git
 cd ghost-shell
 ./install.sh
 ```
